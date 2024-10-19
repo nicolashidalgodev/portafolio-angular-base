@@ -6,9 +6,15 @@ export interface Info {
     facebook?:       string;
     instagram?:      string;
     twitter?:        string;
-    tumblr?:         string;
-    equipo_Trabajo?: EquipoTrabajo[];
+    tumblr?:         string; 
+    equipo?:         Equipo[];
 }
 
-export interface EquipoTrabajo {
+export interface Equipo {
+    bio?:    string;
+    cargo?:  string;
+    link?:   string;
+    nombre?: string;
+    url?:    string;
 }
+ 
