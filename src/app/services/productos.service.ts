@@ -1,45 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Producto } from '../interfaces/producto.interface';
+import { Producto, ProductoDetalle } from '../interfaces/producto.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
 
-  url: string = 'https://fakestoreapi.com/products/';
+  url: string = 'https://portafolio-html-93234-default-rtdb.firebaseio.com/';
 
-  cargada:boolean =  false;
+  cargando:boolean =  true;
 
   productos: Producto[] =  [];
-  producto: any;
+  producto: ProductoDetalle = {};
   productosFiltrados: Producto[] = [];
 
   constructor(
     private http: HttpClient
-  ) { 
-
-    this.getProductos();
-
+  ) {
+    this.getProductos(); 
   }
 
   getProductos(){
-
     return new Promise<void>( (resolve, reject) => {
-
-      this.http.get(this.url)
+      this.http.get(this.url+'productos_idx.json')
         .subscribe(
           (resp: any) =>{
             this.productos = resp;
+            this.cargando = false;
             resolve();
           }
         )
-
     })
   }
 
   getProducto( id:string){
-    return this.http.get(this.url+id) 
+    return this.http.get(this.url+'productos/'+ id +'.json/') 
   }
 
   buscarProducto(search: string){
@@ -57,8 +53,8 @@ export class ProductosService {
     this.productosFiltrados = []; 
     termino = termino.toLowerCase();
     this.productos.forEach( producto => { 
-      const tituloLower = producto.title!.toLowerCase();
-      if( producto.category!.indexOf(termino) >= 0 || tituloLower.indexOf(termino) >= 0){ 
+      const tituloLower = producto.titulo!.toLowerCase();
+      if( producto.categoria!.indexOf(termino) >= 0 || tituloLower.indexOf(termino) >= 0){ 
         this.productosFiltrados.push( producto );  
       } 
     }) 

@@ -2,11 +2,11 @@
 
     <h2>Resultados de busqueda: {{ busqueda }}</h2>
     <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
-<a *ngFor="let producto of productos.productosFiltrados" routerLink="item/{{producto.id}}" class="rk-item ae-masonry__item" style="padding: 32px 16px">
-    <img src="{{ producto.image }}" alt="" style="width: 80%;">
+<a *ngFor="let producto of productos.productosFiltrados" routerLink="item/{{producto.cod}}" class="rk-item ae-masonry__item" style="padding: 32px 16px">
+    <img src="{{ producto.cod }}" alt="" style="width: 80%;">
     <div class="item-meta">
-      <h2>{{ producto.title}}</h2>
-      <p>{{ producto.category }}</p>
+      <h2>{{ producto.titulo}}</h2>
+      <p>{{ producto.categoria }}</p>
     </div>
   </a> 
 </div>
