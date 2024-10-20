@@ -23,8 +23,7 @@ export class InfoPaginaService {
     this.http.get('/assets/data/data.json').subscribe(
       (resp:Info) => {
         this.cargada = true;
-        this.info = resp;
-        console.log(this.info)
+        this.info = resp; 
       }
     )
   }
@@ -32,8 +31,7 @@ export class InfoPaginaService {
   private cargarEquipo(){
     this.http.get('https://portafolio-html-93234-default-rtdb.firebaseio.com/equipo.json').subscribe(
       (resp: any) => { 
-        this.equipo = resp; 
-        console.log(resp);
+        this.equipo = resp;  
       }
     )
   }
